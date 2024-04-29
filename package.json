@@ -1,0 +1,24 @@
+{
+  "name": "practice-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "devDependencies": {
+    "@nx/eslint": "18.3.4",
+    "@nx/remix": "18.3.4",
+    "@nx/web": "18.3.4",
+    "@remix-run/dev": "^2.8.1",
+    "eslint": "~8.57.0",
+    "nx": "18.3.4"
+  },
+  "dependencies": {
+    "@remix-run/serve": "^2.8.1"
+  },
+  "description": ""
+}

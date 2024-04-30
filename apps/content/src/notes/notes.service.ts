@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import NotesRepository from './notes.repository';
 import { CreateNoteDTO, UpdateNoteDTO } from 'src/dtos';
-import { NoteModel } from 'src/models';
+import { NoteEntryModel } from 'src/models';
 import { ContentstackError, NoteNotFoundError } from 'src/errors';
 import { ContentstackErrorStatusCodes } from 'src/enums';
+import { Entry } from '@contentstack/management/types/stack/contentType/entry';
 
 @Injectable()
 export class NotesService {
@@ -14,7 +15,7 @@ export class NotesService {
   }
 
   async saveNote(createNoteDto: CreateNoteDTO) {
-    const note = new NoteModel(createNoteDto.title, createNoteDto.content);
+    const note = new NoteEntryModel(createNoteDto.title, createNoteDto.content);
     try {
       const newNoteEntry = await this.notesRepository.createNoteEntry(note);
       await this.notesRepository.publishNoteEntry(newNoteEntry.uid);
@@ -40,8 +41,10 @@ export class NotesService {
 
   async updateNoteById(id: string, updateNoteDto: UpdateNoteDTO) {
     try {
-      const oldNoteEntry = await this.notesRepository.queryNoteEntry(id);
-      const newNote = new NoteModel(
+      const oldNoteEntry = (await this.notesRepository.queryNoteEntry(
+        id,
+      )) as unknown as Entry;
+      const newNote = new NoteEntryModel(
         updateNoteDto.title ?? oldNoteEntry.title,
         updateNoteDto.content ?? oldNoteEntry.content,
       );

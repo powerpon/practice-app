@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
-import { NotesController } from './notes.controller';
+import { NotesResolver } from './notes.resolver';
 import { NotesService } from './notes.service';
 import NotesRepository from './notes.repository';
 
 @Module({
-  controllers: [NotesController],
-  providers: [NotesRepository, NotesService],
+  providers: [NotesRepository, NotesService, NotesResolver],
 })
 export class NotesModule {}

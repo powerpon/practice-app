@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { client } from '@contentstack/management';
-import { NoteModel } from 'src/models';
+import { NoteEntryModel } from 'src/models';
 import { Entry } from '@contentstack/management/types/stack/contentType/entry';
+import { ContentstackCollection } from '@contentstack/management/types/contentstackCollection';
 
 @Injectable()
 export default class NotesRepository {
@@ -18,13 +19,16 @@ export default class NotesRepository {
     process.env.CONTENTSTACK_PUBLISH_ENVIRONMENT;
 
   async queryNoteEntries() {
-    return await this.contentstackNotesContentType.entry().query().find();
+    return (await this.contentstackNotesContentType
+      .entry()
+      .query()
+      .find()) as unknown as ContentstackCollection<NoteEntryModel>;
   }
 
-  async createNoteEntry(note: NoteModel) {
-    return await this.contentstackNotesContentType
+  async createNoteEntry(note: NoteEntryModel) {
+    return (await this.contentstackNotesContentType
       .entry()
-      .create({ entry: note });
+      .create({ entry: note })) as unknown as NoteEntryModel;
   }
 
   async publishNoteEntry(id: string) {
@@ -37,7 +41,9 @@ export default class NotesRepository {
   }
 
   async queryNoteEntry(id: string) {
-    return await this.contentstackNotesContentType.entry(id).fetch();
+    return (await this.contentstackNotesContentType
+      .entry(id)
+      .fetch()) as unknown as NoteEntryModel;
   }
 
   async unpublishNoteEntry(id: string) {
@@ -53,8 +59,8 @@ export default class NotesRepository {
     await this.contentstackNotesContentType.entry(id).delete();
   }
 
-  async updateNoteEntry(oldNoteEntry: Entry, newNote: NoteModel) {
-    Object.assign(oldNoteEntry, newNote);
-    return await oldNoteEntry.update();
+  async updateNoteEntry(oldNoteEntry: Entry, newNoteEntry: NoteEntryModel) {
+    Object.assign(oldNoteEntry, newNoteEntry);
+    return (await oldNoteEntry.update()) as unknown as NoteEntryModel;
   }
 }

@@ -1,3 +1,4 @@
+import apollo from "@apollo/client";
 import { LinksFunction } from "@remix-run/node";
 import {
   Links,
@@ -9,6 +10,17 @@ import {
 import styleLink from "~/tailwind.css?url";
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const graphQLClient = new apollo.ApolloClient({
+    ssrMode: true, 
+    link: apollo.createHttpLink({ 
+      uri: 'https://countries.trevorblades.com/graphql', 
+      headers: {
+        'Access-Control-Allow-Origin': '*', 
+      },
+    }),
+    cache: new apollo.InMemoryCache(), 
+  });
+  
   return (
     <html lang="en">
       <head>
@@ -18,9 +30,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
-        <ScrollRestoration />
-        <Scripts />
+        <apollo.ApolloProvider client={graphQLClient}>
+          {children}
+          <ScrollRestoration />
+          <Scripts />
+        </apollo.ApolloProvider>
       </body>
     </html>
   );

@@ -1,0 +1,3 @@
+.header-navigation-link {
+    @apply text-orange-200 hover:text-red-400;
+}

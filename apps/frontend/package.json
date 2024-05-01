@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "remix vite:build",
-    "dev": "remix vite:dev",
+    "dev": "npm run build & remix vite:dev",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "remix-serve ./build/server/index.js",
     "typecheck": "tsc",
@@ -16,6 +16,7 @@
     "@remix-run/node": "^2.9.1",
     "@remix-run/react": "^2.9.1",
     "@remix-run/serve": "^2.9.1",
+    "axios": "^1.6.8",
     "graphql": "^16.8.1",
     "isbot": "^4.1.0",
     "react": "^18.2.0",

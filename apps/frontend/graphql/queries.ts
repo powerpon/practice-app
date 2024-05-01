@@ -1,8 +1,6 @@
-import { gql } from "@apollo/client";
-
-export const GET_ALL_NOTES = gql`
-    query GetAllNotes {
-        notes {
+export const GET_ALL_NOTES = `
+    query GetNotes {
+        getNotes {
             title,
             content,
             uid,

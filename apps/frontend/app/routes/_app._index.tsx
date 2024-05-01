@@ -1,4 +1,6 @@
 import type { LinksFunction, MetaFunction } from "@remix-run/node";
+import axios from "axios";
+import { GET_ALL_NOTES } from "graphql/queries";
 import NoteList, {links as NoteListStyleLinks} from "~/components/NoteList/NoteList";
 
 export const meta: MetaFunction = () => {
@@ -16,7 +18,7 @@ export default function Index() {
 }
 
 export async function loader() {
-  
+  return (await axios.post(process.env.GRAPHQL_ENDPOINT as string, { query: GET_ALL_NOTES })).data;
 }
 
 export const links: LinksFunction = () => [

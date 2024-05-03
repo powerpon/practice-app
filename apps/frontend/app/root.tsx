@@ -2,25 +2,25 @@ import {
   ApolloClient,
   createHttpLink,
   InMemoryCache,
-} from "@apollo/client/core/index";
-import { ApolloProvider } from "@apollo/client/react/context/ApolloProvider";
-import { LinksFunction } from "@remix-run/node";
+} from '@apollo/client/core/index';
+import { ApolloProvider } from '@apollo/client/react/context/ApolloProvider';
+import { LinksFunction } from '@remix-run/node';
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "@remix-run/react";
-import styleLink from "~/tailwind.css?url";
+} from '@remix-run/react';
+import styleLink from '~/tailwind.css?url';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const graphQLClient = new ApolloClient({
     ssrMode: true,
     link: createHttpLink({
-      uri: "https://countries.trevorblades.com/graphql",
+      uri: 'https://countries.trevorblades.com/graphql',
       headers: {
-        "Access-Control-Allow-Origin": "*",
+        'Access-Control-Allow-Origin': '*',
       },
     }),
     cache: new InMemoryCache(),
@@ -50,5 +50,5 @@ export default function App() {
 }
 
 export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: styleLink },
+  { rel: 'stylesheet', href: styleLink },
 ];

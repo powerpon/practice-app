@@ -1,5 +1,5 @@
-import { NavLink, useLoaderData } from "@remix-run/react";
-import { GraphQLData, GraphQLGetNotesData } from "~/types/types";
+import { NavLink, useLoaderData } from '@remix-run/react';
+import { GraphQLData, GraphQLGetNotesData } from '~/types/types';
 
 export default function NoteList() {
   const notes: GraphQLData<GraphQLGetNotesData> = useLoaderData();
@@ -16,7 +16,7 @@ export default function NoteList() {
           <NavLink
             to={note.uid}
             className={({ isActive }) =>
-              `flex justify-center text-white text-2xl items-center w-full py-4 ${isActive ? "!bg-pink-800" : ""}`
+              `flex justify-center text-white text-2xl items-center w-full py-4 ${isActive ? '!bg-pink-800' : ''}`
             }
           >
             {note.title}

@@ -1,6 +1,6 @@
-import { getNote } from "graphql/queries";
-import Note from "~/components/Note/Note";
-import { endpoints } from "~/services/endpoints";
+import { getNote } from 'graphql/queries';
+import Note from '~/components/Note/Note';
+import { endpoints } from '~/services/endpoints';
 
 export default function NotePage() {
   return <Note />;

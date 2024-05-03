@@ -1,12 +1,12 @@
 import { NavLink, useLoaderData } from '@remix-run/react';
 import { GraphQLData, GraphQLGetNoteData } from '~/types/types';
-import { convertISODateToNativeDate } from '../helpers';
+import { convertISODateToNativeDate } from '../../helpers';
 import {
   NOTE_CONTENT_LABEL_TEXT,
   NOTE_CREATION_DATE_LABEL_TEXT,
   NOTE_TITLE_LABEL_TEXT,
   X_CLOSE_BUTTON_TEXT,
-} from '../constants/constants';
+} from '../../constants/constants';
 
 export default function Note() {
   const note: GraphQLData<GraphQLGetNoteData> = useLoaderData();

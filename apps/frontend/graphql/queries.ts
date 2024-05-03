@@ -1,19 +1,42 @@
-export const getAllNotes = () => `
-    query GetNotes {
-        getNotes {
-            title,
-            uid,
-        }
-    }
-`;
+import { jsonToGraphQLQuery } from 'json-to-graphql-query';
+import { Note } from '~/types/types';
 
-export const getNote = (id: string) => `
-    query GetNote {
-        getNote(id: "${id}") {
-            title
-            content
-            uid
-            created_at
-        }
-    }
-`;
+export const getAllNotes = () =>
+  jsonToGraphQLQuery({
+    query: {
+      getNotes: {
+        title: true,
+        uid: true,
+      },
+    },
+  });
+
+export const getNote = (id: string) =>
+  jsonToGraphQLQuery({
+    query: {
+      getNote: {
+        __args: {
+          id,
+        },
+        title: true,
+        content: true,
+        uid: true,
+        created_at: true,
+      },
+    },
+  });
+
+export const saveNote = (createNoteDto: Note) =>
+  jsonToGraphQLQuery({
+    mutation: {
+      saveNote: {
+        __args: {
+          createNoteDto,
+        },
+        title: true,
+        content: true,
+        uid: true,
+        created_at: true,
+      },
+    },
+  });

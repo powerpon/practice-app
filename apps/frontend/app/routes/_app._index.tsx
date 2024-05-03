@@ -1,5 +1,5 @@
 import { redirect } from '@remix-run/node';
-import { navigation } from '~/components/constants/constants';
+import { navigation } from '~/constants/constants';
 
 export default function Index() {
   return <></>;

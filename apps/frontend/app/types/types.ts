@@ -16,3 +16,19 @@ export interface GraphQLGetNotesData {
 export interface GraphQLGetNoteData {
   getNote: Note;
 }
+
+export interface GraphQLSaveNoteData {
+  saveNote: Note;
+}
+
+export interface GraphQLError {
+  errors: [
+    {
+      message: string;
+    }
+  ]
+}
+
+export interface ContentstackError {
+  errors: object;
+}

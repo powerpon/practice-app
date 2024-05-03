@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import NotesRepository from './notes.repository';
 import { CreateNoteDTO, UpdateNoteDTO } from 'src/dtos';
 import { NoteEntryModel } from 'src/models';
-import { ContentstackError, NoteNotFoundError } from 'src/errors';
 import { ContentstackErrorStatusCodes } from 'src/enums';
 import { Entry } from '@contentstack/management/types/stack/contentType/entry';
 
@@ -21,7 +20,7 @@ export class NotesService {
       await this.notesRepository.publishNoteEntry(newNoteEntry.uid);
       return newNoteEntry;
     } catch (err) {
-      throw new ContentstackError(err.status, err.errorMessage, err.errors);
+      return err;
     }
   }
 
@@ -29,7 +28,7 @@ export class NotesService {
     try {
       return await this.notesRepository.queryNoteEntry(id);
     } catch (err) {
-      throw new NoteNotFoundError(err.errors);
+      return err;
     }
   }
 
@@ -55,10 +54,7 @@ export class NotesService {
       await this.notesRepository.publishNoteEntry(id);
       return updatedNoteentry;
     } catch (err) {
-      if (err.errorCode === ContentstackErrorStatusCodes.OBJECT_NOT_FOUND) {
-        throw new NoteNotFoundError(err.errors);
-      }
-      throw new ContentstackError(err.status, err.errorMessage, err.errors);
+      return err;
     }
   }
 }

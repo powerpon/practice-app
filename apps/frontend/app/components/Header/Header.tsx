@@ -1,7 +1,7 @@
 import { NavLink } from '@remix-run/react';
 import styleLink from './Header.css?url';
 import { LinksFunction } from '@remix-run/node';
-import { navigation } from '../constants/constants';
+import { navigation } from '../../constants/constants';
 
 export default function Header() {
   return (

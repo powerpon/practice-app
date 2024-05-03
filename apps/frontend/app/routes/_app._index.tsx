@@ -1,7 +1,10 @@
+import { redirect } from '@remix-run/node';
+import { navigation } from '~/components/constants/constants';
+
 export default function Index() {
-  return (
-    <main className="flex justify-center items-center bg-blue-100 h-full">
-      hi index
-    </main>
-  );
+  return <></>;
+}
+
+export async function loader() {
+  return redirect(navigation.notesPage.uri);
 }

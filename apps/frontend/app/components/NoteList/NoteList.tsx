@@ -1,20 +1,28 @@
-import { LinksFunction } from '@remix-run/node';
-import styleLink from './NoteList.css?url';
-import { useLoaderData } from '@remix-run/react';
-import { GraphQLData, GraphQLGetNotesData } from '~/types/types';
+import { NavLink, useLoaderData } from "@remix-run/react";
+import { GraphQLData, GraphQLGetNotesData } from "~/types/types";
 
-export default function NoteList(){
-    const notes: GraphQLData<GraphQLGetNotesData> = useLoaderData();
+export default function NoteList() {
+  const notes: GraphQLData<GraphQLGetNotesData> = useLoaderData();
 
-    return (
-        <ul className="flex flex-col justify-evenly items-center h-full w-full">
-            {notes.data.getNotes.map(
-                (note) => <li key={note.uid} className='note-item'>{note.title}</li>
-            )}
-        </ul>
-    );
+  return (
+    <ul className="flex flex-col justify-evenly items-center w-full self-stretch">
+      {notes.data.getNotes.map((note) => (
+        <li
+          key={note.uid}
+          className="bg-pink-400 hover:bg-pink-600 
+                        cursor-pointer w-1/2 rounded-lg 
+                        overflow-hidden my-4"
+        >
+          <NavLink
+            to={note.uid}
+            className={({ isActive }) =>
+              `flex justify-center text-white text-2xl items-center w-full py-4 ${isActive ? "!bg-pink-800" : ""}`
+            }
+          >
+            {note.title}
+          </NavLink>
+        </li>
+      ))}
+    </ul>
+  );
 }
-
-export const links: LinksFunction = () => [
-    { rel: "stylesheet", href: styleLink },
-];

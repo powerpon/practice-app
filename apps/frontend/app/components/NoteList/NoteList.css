@@ -1,3 +1,0 @@
-.note-item {
-    @apply flex bg-pink-400 hover:bg-pink-600 cursor-pointer w-1/2 rounded-lg items-center justify-center text-white text-2xl py-4;
-}

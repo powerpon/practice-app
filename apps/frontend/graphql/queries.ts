@@ -1,9 +1,19 @@
-export const GET_ALL_NOTES = `
+export const getAllNotes = () => `
     query GetNotes {
         getNotes {
             title,
-            content,
             uid,
+        }
+    }
+`;
+
+export const getNote = (id: string) => `
+    query GetNote {
+        getNote(id: "${id}") {
+            title
+            content
+            uid
+            created_at
         }
     }
 `;

@@ -17,7 +17,7 @@ export default function NoteForm(props: Props) {
   const data: any = useActionData();
 
   return (
-    <Form method="post" id="note-form" className={props.className}>
+    <Form method="post" className={props.className}>
       {data?.errorMessage && (
         <p className="text-red-700">{data.errorMessage}</p>
       )}
@@ -28,7 +28,6 @@ export default function NoteForm(props: Props) {
         id="title"
         placeholder={NOTE_FORM_TITLE_INPUT_PLACEHOLDER_TEXT}
         type="text"
-        required
         name="title"
       />
       <label className="labels" htmlFor="content">
@@ -38,7 +37,6 @@ export default function NoteForm(props: Props) {
         placeholder={NOTE_FORM_CONTENT_INPUT_PLACEHOLDER_TEXT}
         rows={5}
         id="content"
-        required
         name="content"
       ></textarea>
       <button

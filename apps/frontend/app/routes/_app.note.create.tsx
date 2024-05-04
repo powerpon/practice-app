@@ -1,5 +1,5 @@
 import { LinksFunction, redirect } from '@remix-run/node';
-import { saveNote } from 'graphql/queries';
+import { saveNote } from '~/graphql/queries';
 import NoteForm, {
   links as NoteFormStyleLinks,
 } from '~/components/NoteForm/NoteForm';
@@ -36,12 +36,14 @@ export default function CreateNotePage() {
 export async function action({ request }) {
   const formData = await request.formData();
   const noteData = Object.fromEntries(formData) as Note;
-  if (noteData.title.trim().length < 1) {
+  noteData.title = noteData.title.trim();
+  noteData.content = noteData.content.trim();
+  if (noteData.title.length < 1) {
     return generateInputValidationError(
       NOTE_FORM_TITLE_INPUT_ERROR_MESSAGE_TEXT,
     );
   }
-  if (noteData.content.trim().length < 1) {
+  if (noteData.content.length < 1) {
     return generateInputValidationError(
       NOTE_FORM_CONTENT_INPUT_ERROR_MESSAGE_TEXT,
     );

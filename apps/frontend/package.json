@@ -8,11 +8,15 @@
     "dev": "npm run build & remix vite:dev",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "remix-serve ./build/server/index.js",
-    "typecheck": "tsc",
-    "codegen": "graphql-codegen --watch"
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@apollo/client": "^3.10.1",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
+    "@fortawesome/free-regular-svg-icons": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@remix-run/node": "^2.9.1",
     "@remix-run/react": "^2.9.1",
     "@remix-run/serve": "^2.9.1",
@@ -24,8 +28,6 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^5.0.2",
-    "@graphql-codegen/client-preset": "^4.2.5",
     "@parcel/watcher": "^2.4.1",
     "@remix-run/dev": "^2.9.1",
     "@types/react": "^18.2.20",

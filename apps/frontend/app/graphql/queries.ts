@@ -40,3 +40,14 @@ export const saveNote = (createNoteDto: Note) =>
       },
     },
   });
+
+export const deleteNote = (id: string) =>
+  jsonToGraphQLQuery({
+    mutation: {
+      deleteNote: {
+        __args: {
+          id,
+        },
+      },
+    },
+  });

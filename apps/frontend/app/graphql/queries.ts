@@ -51,3 +51,19 @@ export const deleteNote = (id: string) =>
       },
     },
   });
+
+export const updateNote = (id: string, updateNoteDto: Note) =>
+  jsonToGraphQLQuery({
+    mutation: {
+      updateNote: {
+        __args: {
+          id,
+          updateNoteDto,
+        },
+        title: true,
+        content: true,
+        uid: true,
+        created_at: true,
+      }
+    }
+  });

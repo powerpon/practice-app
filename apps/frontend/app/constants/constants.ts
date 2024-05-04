@@ -7,6 +7,9 @@ export const navigation = {
     uri: '/note/create',
     label: 'Create Note',
   },
+  editNotePage: {
+    uri: '/edit',
+  },
 };
 
 export const NOTE_TITLE_LABEL_TEXT = 'Title: ';
@@ -22,3 +25,4 @@ export const NOTE_FORM_TITLE_INPUT_ERROR_MESSAGE_TEXT =
   'Please enter note title';
 export const NOTE_FORM_CONTENT_INPUT_ERROR_MESSAGE_TEXT =
   'Please enter note content';
+export const EDIT_NOTE_PAGE_TITLE_TEXT = 'Edit Note';

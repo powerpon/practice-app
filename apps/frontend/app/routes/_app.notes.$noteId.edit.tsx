@@ -1,13 +1,13 @@
-import { LinksFunction, redirect } from '@remix-run/node';
-import { saveNote } from '~/graphql/queries';
-import { links as NoteFormStyleLinks } from '~/components/NoteForm/NoteForm';
+import { redirect, useOutletContext } from '@remix-run/react';
+import { CloseButton } from '~/components';
 import { NoteForm } from '~/components';
 import {
-  CREATE_NOTE_PAGE_TITLE_TEXT,
+  EDIT_NOTE_PAGE_TITLE_TEXT,
   NOTE_FORM_CONTENT_INPUT_ERROR_MESSAGE_TEXT,
   NOTE_FORM_TITLE_INPUT_ERROR_MESSAGE_TEXT,
   navigation,
 } from '~/constants/constants';
+import { updateNote } from '~/graphql/queries';
 import {
   generateInputValidationError,
   generateReadableContentstackErrorMessage,
@@ -17,18 +17,25 @@ import {
   ContentstackError,
   GraphQLData,
   GraphQLError,
+  GraphQLGetNoteData,
   GraphQLSaveNoteData,
   Note,
 } from '~/types/types';
 
-export default function CreateNotePage() {
+export default function EditNotePage() {
+  const note: GraphQLData<GraphQLGetNoteData> = useOutletContext();
+
   return (
-    <main className="flex flex-col items-center bg-blue-100 grow">
-      <h1 className="text-gray-500 text-3xl py-10">
-        {CREATE_NOTE_PAGE_TITLE_TEXT}
-      </h1>
-      <NoteForm className="pt-10 w-2/5 flex flex-col" />
-    </main>
+    <article className="bg-red-300 w-4/5 flex flex-col items-center relative">
+      <CloseButton />
+      <p className="text-3xl py-10">{EDIT_NOTE_PAGE_TITLE_TEXT}</p>
+      <NoteForm
+        uid={note.data.getNote.uid}
+        titleInitialValue={note.data.getNote.title}
+        contentInitialValue={note.data.getNote.content}
+        className="flex flex-col w-1/2 pb-10"
+      />
+    </article>
   );
 }
 
@@ -47,9 +54,12 @@ export async function action({ request }) {
       NOTE_FORM_CONTENT_INPUT_ERROR_MESSAGE_TEXT,
     );
   }
-  const note = (await endpoints.graphQLRequest(saveNote(noteData))).data as
-    | GraphQLData<GraphQLSaveNoteData>
-    | GraphQLError;
+  const { uid, ...updateNoteDto } = noteData;
+  const note = (
+    await endpoints.graphQLRequest(
+      updateNote(noteData.uid, updateNoteDto as Note),
+    )
+  ).data as GraphQLData<GraphQLSaveNoteData> | GraphQLError;
   if ('errors' in note) {
     const contentstackError = JSON.parse(
       note.errors[0].message,
@@ -58,9 +68,5 @@ export async function action({ request }) {
       generateReadableContentstackErrorMessage(contentstackError.errors),
     );
   }
-  return redirect(
-    `../../${navigation.notesPage.uri}/${note.data.saveNote.uid}`,
-  );
+  return redirect(`..`);
 }
-
-export const links: LinksFunction = () => [...NoteFormStyleLinks()];

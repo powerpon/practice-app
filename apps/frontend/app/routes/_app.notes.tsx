@@ -1,6 +1,6 @@
 import { Outlet } from '@remix-run/react';
 import { getAllNotes } from '~/graphql/queries';
-import NoteList from '~/components/NoteList/NoteList';
+import { NoteList } from '~/components';
 import { endpoints } from '~/services/endpoints';
 
 export default function NotesPage() {

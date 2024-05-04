@@ -26,3 +26,5 @@ export const NOTE_FORM_TITLE_INPUT_ERROR_MESSAGE_TEXT =
 export const NOTE_FORM_CONTENT_INPUT_ERROR_MESSAGE_TEXT =
   'Please enter note content';
 export const EDIT_NOTE_PAGE_TITLE_TEXT = 'Edit Note';
+export const ERROR_PAGE_TITLE_TEXT = 'Page Does Not Exist';
+export const ERROR_PAGE_HOME_LINK_TEXT = 'Back to homepage';

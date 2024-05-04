@@ -1,11 +1,7 @@
-import { LinksFunction, MetaFunction } from '@remix-run/node';
+import { LinksFunction } from '@remix-run/node';
 import { Outlet } from '@remix-run/react';
 import { links as HeaderStyleLinks } from '~/components/Header/Header';
 import { Header } from '~/components';
-
-export const meta: MetaFunction = () => {
-  return [{ title: 'Notes App' }];
-};
 
 export default function Layout() {
   return (

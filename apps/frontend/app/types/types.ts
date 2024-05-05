@@ -1,3 +1,5 @@
+import { InputTypes } from "~/enums";
+
 export interface GraphQLData<T> {
   data: T;
 }
@@ -50,3 +52,14 @@ export type NoteItemDisplayObject = {
     helperFunction?: (...args: any[]) => any;
   };
 };
+
+export type NoteFormStructure = {
+  [key in keyof NoteObject]?: {
+    inputType: InputTypes;
+    inputId?: string;
+    labelText?: string;
+    inputPlaceholder?: string;
+    inputName?: string;
+    textareaRows?: number;
+  }
+}

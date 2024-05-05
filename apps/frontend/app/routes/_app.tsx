@@ -1,6 +1,4 @@
-import { LinksFunction } from '@remix-run/node';
 import { Outlet } from '@remix-run/react';
-import { links as HeaderStyleLinks } from '~/components/Header/Header';
 import { Header } from '~/components';
 
 export default function Layout() {
@@ -11,5 +9,3 @@ export default function Layout() {
     </div>
   );
 }
-
-export const links: LinksFunction = () => [...HeaderStyleLinks()];

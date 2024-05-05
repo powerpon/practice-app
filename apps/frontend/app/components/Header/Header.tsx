@@ -1,6 +1,4 @@
 import { NavLink } from '@remix-run/react';
-import styleLink from './Header.css?url';
-import { LinksFunction } from '@remix-run/node';
 import { navigation } from '../../constants/constants';
 
 export default function Header() {
@@ -14,7 +12,7 @@ export default function Header() {
               key={key}
               to={navigation[key].uri}
               className={({ isActive }) =>
-                `header-navigation-link ${isActive ? '!text-red-800' : ''}`
+                `text-orange-200 hover:text-red-400 ${isActive ? '!text-red-800' : ''}`
               }
             >
               {navigation[key].label}
@@ -24,7 +22,3 @@ export default function Header() {
     </header>
   );
 }
-
-export const links: LinksFunction = () => [
-  { rel: 'stylesheet', href: styleLink },
-];

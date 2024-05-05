@@ -1,6 +1,5 @@
 import { LinksFunction, redirect } from '@remix-run/node';
 import { saveNote } from '~/graphql/queries';
-import { links as NoteFormStyleLinks } from '~/components/NoteForm/NoteForm';
 import { NoteForm } from '~/components';
 import {
   CREATE_NOTE_PAGE_TITLE_TEXT,
@@ -62,5 +61,3 @@ export async function action({ request }) {
     `../../${navigation.notesPage.uri}/${note.data.saveNote.uid}`,
   );
 }
-
-export const links: LinksFunction = () => [...NoteFormStyleLinks()];

@@ -1,18 +1,16 @@
 import { Form, useActionData } from '@remix-run/react';
 import {
-  NOTE_CONTENT_LABEL_TEXT,
-  NOTE_FORM_CONTENT_INPUT_PLACEHOLDER_TEXT,
   NOTE_FORM_SAVE_BUTTON_TEXT,
-  NOTE_FORM_TITLE_INPUT_PLACEHOLDER_TEXT,
-  NOTE_TITLE_LABEL_TEXT,
+  noteFormStructure,
 } from '~/constants/constants';
-import styleLink from './NoteForm.css?url';
 import { LinksFunction } from '@remix-run/node';
+import FormInput from '../FormInput/FormInput';
+import { NoteObject } from '~/types/types';
 
 interface Props {
   className?: string;
-  titleInitialValue?: string;
-  contentInitialValue?: string;
+  title?: string;
+  content?: string;
   uid?: string;
 }
 
@@ -24,26 +22,22 @@ export default function NoteForm(props: Props) {
       {data?.errorMessage && (
         <p className="text-red-700">{data.errorMessage}</p>
       )}
-      <label className="labels" htmlFor="title">
-        {NOTE_TITLE_LABEL_TEXT}
-      </label>
-      <input
-        id="title"
-        placeholder={NOTE_FORM_TITLE_INPUT_PLACEHOLDER_TEXT}
-        type="text"
-        name="title"
-        defaultValue={props.titleInitialValue}
-      />
-      <label className="labels" htmlFor="content">
-        {NOTE_CONTENT_LABEL_TEXT}
-      </label>
-      <textarea
-        placeholder={NOTE_FORM_CONTENT_INPUT_PLACEHOLDER_TEXT}
-        rows={5}
-        id="content"
-        name="content"
-        defaultValue={props.contentInitialValue}
-      ></textarea>
+      {Object.keys(noteFormStructure).map((key) => {
+        const inputData = noteFormStructure[key as keyof NoteObject];
+        return (
+          <FormInput
+            key={key}
+            inputType={inputData!.inputType}
+            labelClassName="block text-lg font-bold pt-4"
+            inputId={inputData!.inputId}
+            labelText={inputData!.labelText}
+            inputPlaceholder={inputData!.inputPlaceholder}
+            inputName={inputData!.inputName}
+            inputDefaultValue={props[key as keyof Props]}
+            textareaRows={inputData!.textareaRows}
+          />
+        );
+      })}
       <button
         className="bg-green-300 px-5 py-2 w-fit mt-4 self-end rounded-lg hover:bg-green-500"
         type="submit"
@@ -55,7 +49,3 @@ export default function NoteForm(props: Props) {
     </Form>
   );
 }
-
-export const links: LinksFunction = () => [
-  { rel: 'stylesheet', href: styleLink },
-];

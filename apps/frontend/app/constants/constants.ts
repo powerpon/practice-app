@@ -1,5 +1,6 @@
+import { InputTypes } from '~/enums';
 import { convertISODateToNativeDate } from '~/helpers';
-import { NavigationObject, NoteItemDisplayObject } from '~/types/types';
+import { NavigationObject, NoteFormStructure, NoteItemDisplayObject } from '~/types/types';
 
 export const navigation: NavigationObject = {
   notesPage: {
@@ -46,5 +47,23 @@ export const noteItem: NoteItemDisplayObject = {
   created_at: {
     text: NOTE_CREATION_DATE_LABEL_TEXT,
     helperFunction: convertISODateToNativeDate,
+  },
+};
+
+export const noteFormStructure: NoteFormStructure = {
+  title: {
+    inputType: InputTypes.TEXT,
+    inputId: 'title',
+    labelText: NOTE_TITLE_LABEL_TEXT,
+    inputPlaceholder: NOTE_FORM_TITLE_INPUT_PLACEHOLDER_TEXT,
+    inputName: 'title',
+  },
+  content: {
+    inputType: InputTypes.TEXTAREA,
+    inputId: 'content',
+    labelText: NOTE_CONTENT_LABEL_TEXT,
+    inputPlaceholder: NOTE_FORM_CONTENT_INPUT_PLACEHOLDER_TEXT,
+    inputName: 'content',
+    textareaRows: 5,
   },
 };

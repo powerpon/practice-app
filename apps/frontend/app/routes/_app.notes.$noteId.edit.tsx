@@ -5,7 +5,6 @@ import {
   EDIT_NOTE_PAGE_TITLE_TEXT,
   NOTE_FORM_CONTENT_INPUT_ERROR_MESSAGE_TEXT,
   NOTE_FORM_TITLE_INPUT_ERROR_MESSAGE_TEXT,
-  navigation,
 } from '~/constants/constants';
 import { updateNote } from '~/graphql/queries';
 import {
@@ -31,8 +30,8 @@ export default function EditNotePage() {
       <p className="text-3xl py-10">{EDIT_NOTE_PAGE_TITLE_TEXT}</p>
       <NoteForm
         uid={note.data.getNote.uid}
-        titleInitialValue={note.data.getNote.title}
-        contentInitialValue={note.data.getNote.content}
+        title={note.data.getNote.title}
+        content={note.data.getNote.content}
         className="flex flex-col w-1/2 pb-10"
       />
     </article>

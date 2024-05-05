@@ -3,7 +3,6 @@ import {
   NOTE_FORM_SAVE_BUTTON_TEXT,
   noteFormStructure,
 } from '~/constants/constants';
-import { LinksFunction } from '@remix-run/node';
 import FormInput from '../FormInput/FormInput';
 import { NoteObject } from '~/types/types';
 

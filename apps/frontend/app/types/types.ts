@@ -1,4 +1,4 @@
-import { InputTypes } from "~/enums";
+import { InputTypes } from '~/enums';
 
 export interface GraphQLData<T> {
   data: T;

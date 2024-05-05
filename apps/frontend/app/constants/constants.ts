@@ -1,6 +1,10 @@
 import { InputTypes } from '~/enums';
 import { convertISODateToNativeDate } from '~/helpers';
-import { NavigationObject, NoteFormStructure, NoteItemDisplayObject } from '~/types/types';
+import {
+  NavigationObject,
+  NoteFormStructure,
+  NoteItemDisplayObject,
+} from '~/types/types';
 
 export const navigation: NavigationObject = {
   notesPage: {

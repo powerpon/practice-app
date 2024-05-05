@@ -1,4 +1,4 @@
-import { LinksFunction, redirect } from '@remix-run/node';
+import { redirect } from '@remix-run/node';
 import { saveNote } from '~/graphql/queries';
 import { NoteForm } from '~/components';
 import {

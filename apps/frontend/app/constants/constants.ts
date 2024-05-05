@@ -1,11 +1,15 @@
-export const navigation = {
+import { NavigationObject } from '~/types/types';
+
+export const navigation: NavigationObject = {
   notesPage: {
     uri: '/notes',
     label: 'Notes',
+    isNavbarItem: true,
   },
   createNotePage: {
     uri: '/note/create',
     label: 'Create Note',
+    isNavbarItem: true,
   },
   editNotePage: {
     uri: '/edit',

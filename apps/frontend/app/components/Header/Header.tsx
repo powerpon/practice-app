@@ -7,22 +7,19 @@ export default function Header() {
   return (
     <header>
       <nav className="flex justify-evenly items-center bg-blue-300 h-12">
-        <NavLink
-          to={navigation.notesPage.uri}
-          className={({ isActive }) =>
-            `header-navigation-link ${isActive ? '!text-red-800' : ''}`
-          }
-        >
-          {navigation.notesPage.label}
-        </NavLink>
-        <NavLink
-          to={navigation.createNotePage.uri}
-          className={({ isActive }) =>
-            `header-navigation-link ${isActive ? '!text-red-800' : ''}`
-          }
-        >
-          {navigation.createNotePage.label}
-        </NavLink>
+        {Object.keys(navigation)
+          .filter((key) => navigation[key].isNavbarItem)
+          .map((key) => (
+            <NavLink
+              key={key}
+              to={navigation[key].uri}
+              className={({ isActive }) =>
+                `header-navigation-link ${isActive ? '!text-red-800' : ''}`
+              }
+            >
+              {navigation[key].label}
+            </NavLink>
+          ))}
       </nav>
     </header>
   );

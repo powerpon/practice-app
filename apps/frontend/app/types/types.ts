@@ -32,3 +32,13 @@ export interface GraphQLError {
 export interface ContentstackError {
   errors: object;
 }
+
+export interface NavigationItem {
+  uri: string;
+  label?: string;
+  isNavbarItem?: boolean;
+}
+
+export interface NavigationObject {
+  [key: string]: NavigationItem;
+}

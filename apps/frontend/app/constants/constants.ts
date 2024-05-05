@@ -1,4 +1,5 @@
-import { NavigationObject } from '~/types/types';
+import { convertISODateToNativeDate } from '~/helpers';
+import { NavigationObject, NoteItemDisplayObject } from '~/types/types';
 
 export const navigation: NavigationObject = {
   notesPage: {
@@ -32,3 +33,18 @@ export const NOTE_FORM_CONTENT_INPUT_ERROR_MESSAGE_TEXT =
 export const EDIT_NOTE_PAGE_TITLE_TEXT = 'Edit Note';
 export const ERROR_PAGE_TITLE_TEXT = 'Page Does Not Exist';
 export const ERROR_PAGE_HOME_LINK_TEXT = 'Back to homepage';
+
+export const noteItem: NoteItemDisplayObject = {
+  title: {
+    className: 'text-3xl',
+    text: NOTE_TITLE_LABEL_TEXT,
+  },
+  content: {
+    className: 'text-xl py-4',
+    text: NOTE_CONTENT_LABEL_TEXT,
+  },
+  created_at: {
+    text: NOTE_CREATION_DATE_LABEL_TEXT,
+    helperFunction: convertISODateToNativeDate,
+  },
+};

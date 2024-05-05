@@ -18,7 +18,7 @@ import {
   GraphQLData,
   GraphQLError,
   GraphQLSaveNoteData,
-  Note,
+  NoteObject,
 } from '~/types/types';
 
 export default function CreateNotePage() {
@@ -34,7 +34,7 @@ export default function CreateNotePage() {
 
 export async function action({ request }) {
   const formData = await request.formData();
-  const noteData = Object.fromEntries(formData) as Note;
+  const noteData = Object.fromEntries(formData) as NoteObject;
   noteData.title = noteData.title.trim();
   noteData.content = noteData.content.trim();
   if (noteData.title.length < 1) {

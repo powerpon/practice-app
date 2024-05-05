@@ -2,7 +2,7 @@ export interface GraphQLData<T> {
   data: T;
 }
 
-export interface Note {
+export interface NoteObject {
   title: string;
   content: string;
   uid: string;
@@ -10,15 +10,15 @@ export interface Note {
 }
 
 export interface GraphQLGetNotesData {
-  getNotes: Note[];
+  getNotes: NoteObject[];
 }
 
 export interface GraphQLGetNoteData {
-  getNote: Note;
+  getNote: NoteObject;
 }
 
 export interface GraphQLSaveNoteData {
-  saveNote: Note;
+  saveNote: NoteObject;
 }
 
 export interface GraphQLError {
@@ -42,3 +42,11 @@ export interface NavigationItem {
 export interface NavigationObject {
   [key: string]: NavigationItem;
 }
+
+export type NoteItemDisplayObject = {
+  [key in keyof NoteObject]?: {
+    className?: string;
+    text: string;
+    helperFunction?: (...args: any[]) => any;
+  };
+};

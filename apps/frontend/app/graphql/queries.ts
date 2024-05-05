@@ -1,5 +1,5 @@
 import { jsonToGraphQLQuery } from 'json-to-graphql-query';
-import { Note } from '~/types/types';
+import { NoteObject } from '~/types/types';
 
 export const getAllNotes = () =>
   jsonToGraphQLQuery({
@@ -26,7 +26,7 @@ export const getNote = (id: string) =>
     },
   });
 
-export const saveNote = (createNoteDto: Note) =>
+export const saveNote = (createNoteDto: NoteObject) =>
   jsonToGraphQLQuery({
     mutation: {
       saveNote: {
@@ -52,7 +52,7 @@ export const deleteNote = (id: string) =>
     },
   });
 
-export const updateNote = (id: string, updateNoteDto: Note) =>
+export const updateNote = (id: string, updateNoteDto: NoteObject) =>
   jsonToGraphQLQuery({
     mutation: {
       updateNote: {

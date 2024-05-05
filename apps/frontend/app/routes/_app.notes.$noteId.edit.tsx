@@ -19,7 +19,7 @@ import {
   GraphQLError,
   GraphQLGetNoteData,
   GraphQLSaveNoteData,
-  Note,
+  NoteObject,
 } from '~/types/types';
 
 export default function EditNotePage() {
@@ -41,7 +41,7 @@ export default function EditNotePage() {
 
 export async function action({ request }) {
   const formData = await request.formData();
-  const noteData = Object.fromEntries(formData) as Note;
+  const noteData = Object.fromEntries(formData) as NoteObject;
   noteData.title = noteData.title.trim();
   noteData.content = noteData.content.trim();
   if (noteData.title.length < 1) {
@@ -57,7 +57,7 @@ export async function action({ request }) {
   const { uid, ...updateNoteDto } = noteData;
   const note = (
     await endpoints.graphQLRequest(
-      updateNote(noteData.uid, updateNoteDto as Note),
+      updateNote(noteData.uid, updateNoteDto as NoteObject),
     )
   ).data as GraphQLData<GraphQLSaveNoteData> | GraphQLError;
   if ('errors' in note) {

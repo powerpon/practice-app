@@ -4,7 +4,7 @@ import { NoteObject } from '~/types/types';
 export const getAllNotes = () =>
   jsonToGraphQLQuery({
     query: {
-      getNotes: {
+      notes: {
         title: true,
         uid: true,
       },
@@ -14,7 +14,7 @@ export const getAllNotes = () =>
 export const getNote = (id: string) =>
   jsonToGraphQLQuery({
     query: {
-      getNote: {
+      note: {
         __args: {
           id,
         },
@@ -29,7 +29,7 @@ export const getNote = (id: string) =>
 export const saveNote = (createNoteDto: NoteObject) =>
   jsonToGraphQLQuery({
     mutation: {
-      saveNote: {
+      create_note: {
         __args: {
           createNoteDto,
         },
@@ -44,7 +44,7 @@ export const saveNote = (createNoteDto: NoteObject) =>
 export const deleteNote = (id: string) =>
   jsonToGraphQLQuery({
     mutation: {
-      deleteNote: {
+      delete_note: {
         __args: {
           id,
         },
@@ -55,7 +55,7 @@ export const deleteNote = (id: string) =>
 export const updateNote = (id: string, updateNoteDto: NoteObject) =>
   jsonToGraphQLQuery({
     mutation: {
-      updateNote: {
+      update_note: {
         __args: {
           id,
           updateNoteDto,

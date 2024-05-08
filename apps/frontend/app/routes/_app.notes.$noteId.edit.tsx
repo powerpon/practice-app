@@ -29,9 +29,9 @@ export default function EditNotePage() {
       <CloseButton />
       <p className="text-3xl py-10">{EDIT_NOTE_PAGE_TITLE_TEXT}</p>
       <NoteForm
-        uid={note.data.getNote.uid}
-        title={note.data.getNote.title}
-        content={note.data.getNote.content}
+        uid={note.data.note.uid}
+        title={note.data.note.title}
+        content={note.data.note.content}
         className="flex flex-col w-1/2 pb-10"
       />
     </article>

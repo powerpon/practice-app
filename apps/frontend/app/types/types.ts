@@ -12,15 +12,15 @@ export interface NoteObject {
 }
 
 export interface GraphQLGetNotesData {
-  getNotes: NoteObject[];
+  notes: NoteObject[];
 }
 
 export interface GraphQLGetNoteData {
-  getNote: NoteObject;
+  note: NoteObject;
 }
 
 export interface GraphQLSaveNoteData {
-  saveNote: NoteObject;
+  create_note: NoteObject;
 }
 
 export interface GraphQLError {

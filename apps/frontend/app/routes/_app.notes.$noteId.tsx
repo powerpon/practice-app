@@ -36,7 +36,7 @@ export default function NotePage() {
             icon={faPen}
           />
         </NavLink>
-        <button type="submit" name="deleteId" value={note.data.getNote.uid}>
+        <button type="submit" name="deleteId" value={note.data.note.uid}>
           <FontAwesomeIcon
             className="p-2 mt-2 bg-red-500 hover:bg-red-600 rounded-full border border-black"
             icon={faTrashCan}

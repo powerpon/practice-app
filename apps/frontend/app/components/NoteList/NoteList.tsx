@@ -2,11 +2,11 @@ import { NavLink, useLoaderData } from '@remix-run/react';
 import { GraphQLData, GraphQLGetNotesData } from '~/types/types';
 
 export default function NoteList() {
-  const notes: GraphQLData<GraphQLGetNotesData> = useLoaderData();
+  const notesData: GraphQLData<GraphQLGetNotesData> = useLoaderData();
 
   return (
     <ul className="flex flex-col justify-evenly items-center w-full self-stretch">
-      {notes.data.getNotes.map((note) => (
+      {notesData.data.notes.map((note) => (
         <li
           key={note.uid}
           className="bg-pink-400 hover:bg-pink-600 

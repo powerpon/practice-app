@@ -58,6 +58,6 @@ export async function action({ request }) {
     );
   }
   return redirect(
-    `../../${navigation.notesPage.uri}/${note.data.saveNote.uid}`,
+    `../../${navigation.notesPage.uri}/${note.data.create_note.uid}`,
   );
 }

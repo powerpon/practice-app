@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import NotesRepository from './notes.repository';
 import { CreateNoteDTO, UpdateNoteDTO } from 'src/dtos';
 import { NoteEntryModel } from 'src/models';
-import { ContentstackErrorStatusCodes } from 'src/enums';
 import { Entry } from '@contentstack/management/types/stack/contentType/entry';
 
 @Injectable()

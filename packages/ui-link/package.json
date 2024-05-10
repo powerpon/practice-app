@@ -1,0 +1,7 @@
+{
+  "name": "ui-link",
+  "version": "0.0.1",
+  "dependencies": {
+    "@remix-run/react": "^2.9.1"
+  }
+}

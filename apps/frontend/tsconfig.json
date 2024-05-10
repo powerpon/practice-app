@@ -23,7 +23,9 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"]
+      "~/*": ["./app/*"],
+      "@packages/ui-notes": ["../../packages/ui-notes/src/index.ts"],
+      "@packages/ui-shared": ["../../packages/ui-shared/src/index.ts"]
     },
 
     // Vite takes care of building everything, not tsc.

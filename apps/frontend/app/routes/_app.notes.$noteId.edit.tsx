@@ -1,38 +1,35 @@
-import { redirect, useOutletContext } from '@remix-run/react';
-import { CloseButton } from '~/components';
-import { NoteForm } from '~/components';
+import { redirect, useActionData, useOutletContext } from '@remix-run/react';
+import { CloseButton, NoteForm } from '@packages/ui-notes';
 import {
   EDIT_NOTE_PAGE_TITLE_TEXT,
   NOTE_FORM_CONTENT_INPUT_ERROR_MESSAGE_TEXT,
   NOTE_FORM_TITLE_INPUT_ERROR_MESSAGE_TEXT,
-} from '~/constants/constants';
-import { updateNote } from '~/graphql/queries';
-import {
   generateInputValidationError,
   generateReadableContentstackErrorMessage,
-} from '~/helpers';
-import { endpoints } from '~/services/endpoints';
-import {
   ContentstackError,
   GraphQLData,
   GraphQLError,
   GraphQLGetNoteData,
   GraphQLSaveNoteData,
   NoteObject,
-} from '~/types/types';
+} from '@packages/ui-shared';
+import { updateNote } from '~/graphql/queries';
+import { endpoints } from '~/services/endpoints';
 
 export default function EditNotePage() {
-  const note: GraphQLData<GraphQLGetNoteData> = useOutletContext();
+  const noteGqlData: GraphQLData<GraphQLGetNoteData> = useOutletContext();
+  const formData: any = useActionData();
 
   return (
     <article className="bg-red-300 w-4/5 flex flex-col items-center relative">
       <CloseButton />
       <p className="text-3xl py-10">{EDIT_NOTE_PAGE_TITLE_TEXT}</p>
       <NoteForm
-        uid={note.data.note.uid}
-        title={note.data.note.title}
-        content={note.data.note.content}
+        uid={noteGqlData.data.note.uid}
+        title={noteGqlData.data.note.title}
+        content={noteGqlData.data.note.content}
         className="flex flex-col w-1/2 pb-10"
+        formData={formData}
       />
     </article>
   );

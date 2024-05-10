@@ -1,5 +1,5 @@
 import { jsonToGraphQLQuery } from 'json-to-graphql-query';
-import { NoteObject } from '~/types/types';
+import { NoteObject } from '@packages/ui-shared';
 
 export const getAllNotes = () =>
   jsonToGraphQLQuery({

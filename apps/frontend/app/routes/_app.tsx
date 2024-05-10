@@ -1,5 +1,5 @@
 import { Outlet } from '@remix-run/react';
-import { Header } from '~/components';
+import { Header } from '@packages/ui-notes';
 
 export default function Layout() {
   return (

@@ -9,22 +9,21 @@ import {
   useLocation,
 } from '@remix-run/react';
 import { deleteNote, getNote } from '~/graphql/queries';
-import { Note } from '~/components';
+import { Note } from '@packages/ui-notes';
 import { endpoints } from '~/services/endpoints';
-import { GraphQLData, GraphQLGetNoteData } from '~/types/types';
+import { GraphQLData, GraphQLGetNoteData, navigation } from '@packages/ui-shared';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
-import { navigation } from '~/constants/constants';
 
 export default function NotePage() {
-  const note: GraphQLData<GraphQLGetNoteData> = useLoaderData();
+  const noteGqlData: GraphQLData<GraphQLGetNoteData> = useLoaderData();
   const { pathname } = useLocation();
 
   return (
     <section className="fixed bottom-2 w-full flex items-center flex-col">
       {pathname.includes(navigation.editNotePage.uri) ? (
-        <Outlet context={note} />
+        <Outlet context={noteGqlData} />
       ) : (
-        <Note />
+        <Note note={noteGqlData.data.note} />
       )}
       <Form method="post">
         <NavLink
@@ -36,7 +35,7 @@ export default function NotePage() {
             icon={faPen}
           />
         </NavLink>
-        <button type="submit" name="deleteId" value={note.data.note.uid}>
+        <button type="submit" name="deleteId" value={noteGqlData.data.note.uid}>
           <FontAwesomeIcon
             className="p-2 mt-2 bg-red-500 hover:bg-red-600 rounded-full border border-black"
             icon={faTrashCan}

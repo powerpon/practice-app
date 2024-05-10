@@ -1,32 +1,31 @@
 import { redirect } from '@remix-run/node';
 import { saveNote } from '~/graphql/queries';
-import { NoteForm } from '~/components';
+import { NoteForm } from '@packages/ui-notes';
 import {
   CREATE_NOTE_PAGE_TITLE_TEXT,
   NOTE_FORM_CONTENT_INPUT_ERROR_MESSAGE_TEXT,
   NOTE_FORM_TITLE_INPUT_ERROR_MESSAGE_TEXT,
   navigation,
-} from '~/constants/constants';
-import {
   generateInputValidationError,
   generateReadableContentstackErrorMessage,
-} from '~/helpers';
-import { endpoints } from '~/services/endpoints';
-import {
   ContentstackError,
   GraphQLData,
   GraphQLError,
   GraphQLSaveNoteData,
   NoteObject,
-} from '~/types/types';
+} from '@packages/ui-shared';
+import { endpoints } from '~/services/endpoints';
+import { useActionData } from '@remix-run/react';
 
 export default function CreateNotePage() {
+  const formData: any = useActionData();
+
   return (
     <main className="flex flex-col items-center bg-blue-100 grow">
       <h1 className="text-gray-500 text-3xl py-10">
         {CREATE_NOTE_PAGE_TITLE_TEXT}
       </h1>
-      <NoteForm className="pt-10 w-2/5 flex flex-col" />
+      <NoteForm className="pt-10 w-2/5 flex flex-col" formData={formData} />
     </main>
   );
 }

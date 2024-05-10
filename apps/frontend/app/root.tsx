@@ -17,7 +17,7 @@ import styleLink from '~/tailwind.css?url';
 import {
   ERROR_PAGE_HOME_LINK_TEXT,
   ERROR_PAGE_TITLE_TEXT,
-} from './constants/constants';
+} from '@packages/ui-shared';
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Notes App' }];

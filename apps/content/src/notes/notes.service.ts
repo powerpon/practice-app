@@ -46,12 +46,12 @@ export class NotesService {
         updateNoteDto.title ?? oldNoteEntry.title,
         updateNoteDto.content ?? oldNoteEntry.content,
       );
-      const updatedNoteentry = await this.notesRepository.updateNoteEntry(
+      const updatedNoteEntry = await this.notesRepository.updateNoteEntry(
         oldNoteEntry,
         newNote,
       );
       await this.notesRepository.publishNoteEntry(id);
-      return updatedNoteentry;
+      return updatedNoteEntry;
     } catch (err) {
       return err;
     }

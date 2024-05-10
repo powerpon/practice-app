@@ -3,20 +3,27 @@ import { client } from '@contentstack/management';
 import { NoteEntryModel } from 'src/models';
 import { Entry } from '@contentstack/management/types/stack/contentType/entry';
 import { ContentstackCollection } from '@contentstack/management/types/contentstackCollection';
+import { ContentType } from '@contentstack/management/types/stack/contentType';
+import { appConfig } from 'src/config';
 
 @Injectable()
 export default class NotesRepository {
-  private readonly contentstackNotesContentType = client({
-    endpoint: process.env.CONTENTSTACK_EU_ENDPOINT,
-  })
-    .stack({
-      api_key: process.env.CONTENTSTACK_STACK_API_KEY,
-      management_token: process.env.CONTENTSTACK_MANAGEMENT_TOKEN,
+  private readonly contentstackNotesContentType: ContentType;
+  private readonly contentstackLocale: string;
+  private readonly contentstackEnvironment: string;
+
+  constructor() {
+    this.contentstackNotesContentType = client({
+      endpoint: appConfig.contentstackEuEndpoint,
     })
-    .contentType(process.env.CONTENTSTACK_NOTES_CONTENT_TYPE_ID);
-  private readonly contentstackLocale = process.env.CONTENTSTACK_PUBLISH_LOCALE;
-  private readonly contentstackEnvironment =
-    process.env.CONTENTSTACK_PUBLISH_ENVIRONMENT;
+      .stack({
+        api_key: appConfig.contentstackStackApiKey,
+        management_token: appConfig.contentstackManagementToken,
+      })
+      .contentType(appConfig.contentstackNotesContentTypeId);
+    this.contentstackLocale = appConfig.contentstackPublishLocale;
+    this.contentstackEnvironment = appConfig.contentstackPublishEnvironment;
+  }
 
   async queryNoteEntries() {
     return (await this.contentstackNotesContentType

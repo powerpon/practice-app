@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "paths": {
+            "ui-link": [
+              "packages/ui-link/src/index.ts"
+            ],
+            "ui-notes": [
+              "packages/ui-notes/src/index.ts"
+            ],
+            "ui-shared": [
+              "packages/ui-shared/src/index.ts"
+            ]
+        }
+    }
+}

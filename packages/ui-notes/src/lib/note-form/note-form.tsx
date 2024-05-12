@@ -1,6 +1,6 @@
 import { RemixFormWrapper } from 'ui-link';
 import { FormInput } from 'ui-notes';
-import { NoteObject, NOTE_FORM_SAVE_BUTTON_TEXT, noteFormStructure, } from 'ui-shared';
+import { NOTE_FORM_SAVE_BUTTON_TEXT, NoteEntryModel, noteFormStructure, } from 'ui-shared';
 
 interface Props {
   className?: string;
@@ -18,7 +18,7 @@ export default function NoteForm(props: Props) {
                 <p className="text-red-700">{props.formData.errorMessage}</p>
             )}
             {Object.keys(noteFormStructure).map((key) => {
-                const inputData = noteFormStructure[key as keyof NoteObject];
+                const inputData = noteFormStructure[key as keyof NoteEntryModel];
 
                 return (
                 <FormInput

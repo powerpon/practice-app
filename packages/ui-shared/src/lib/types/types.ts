@@ -1,27 +1,5 @@
 import { InputTypes } from '../enums';
-
-export interface GraphQLData<T> {
-  data: T;
-}
-
-export interface NoteObject {
-  title: string;
-  content: string;
-  uid: string;
-  created_at: string;
-}
-
-export interface GraphQLGetNotesData {
-  notes: NoteObject[];
-}
-
-export interface GraphQLGetNoteData {
-  note: NoteObject;
-}
-
-export interface GraphQLSaveNoteData {
-  create_note: NoteObject;
-}
+import { NoteEntryModel } from '../graphql/generated/notes.gen';
 
 export interface GraphQLError {
   errors: [
@@ -46,7 +24,7 @@ export interface NavigationObject {
 }
 
 export type NoteItemDisplayObject = {
-  [key in keyof NoteObject]?: {
+  [key in keyof NoteEntryModel]?: {
     className?: string;
     text: string;
     helperFunction?: (...args: any[]) => any;
@@ -54,7 +32,7 @@ export type NoteItemDisplayObject = {
 };
 
 export type NoteFormStructure = {
-  [key in keyof NoteObject]?: {
+  [key in keyof NoteEntryModel]?: {
     inputType: InputTypes;
     inputId?: string;
     labelText?: string;

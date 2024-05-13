@@ -1,20 +1,19 @@
 import { Outlet, useLoaderData } from '@remix-run/react';
-import { getAllNotes } from '~/graphql/queries';
 import { NoteList } from '@packages/ui-notes';
 import { endpoints } from '~/services/endpoints';
-import { GraphQLData, GraphQLGetNotesData } from '@packages/ui-shared';
+import { NotesQuery } from '@packages/ui-shared';
 
 export default function NotesPage() {
-  const notesGqlData: GraphQLData<GraphQLGetNotesData> = useLoaderData();
+  const notesGqlData: NotesQuery = useLoaderData();
 
   return (
     <main className="flex justify-center items-center bg-blue-100 grow">
-      <NoteList notes={notesGqlData.data.notes} />
+      <NoteList notes={notesGqlData.notes} />
       <Outlet />
     </main>
   );
 }
 
 export async function loader() {
-  return (await endpoints.graphQLRequest(getAllNotes())).data;
+  return await endpoints.getNotes();
 }

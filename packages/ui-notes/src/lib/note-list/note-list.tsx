@@ -1,8 +1,8 @@
 import { RemixNavLinkWrapper } from 'ui-link';
-import { NoteObject } from 'ui-shared';
+import { NoteEntryModel } from 'ui-shared';
 
 interface Props {
-    notes: NoteObject[];
+    notes: NoteEntryModel[];
 }
 
 export default function NoteList(props: Props) {

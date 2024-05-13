@@ -4,3 +4,4 @@ out/
 dist/
 
 .nx/cache
+*.gen.ts

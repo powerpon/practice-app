@@ -1,0 +1,9 @@
+mutation Create_note($createNoteDto: CreateNoteDTO!) {
+    create_note(createNoteDto: $createNoteDto) {
+        title
+        content
+        uid
+        created_at
+        updated_at
+    }
+}

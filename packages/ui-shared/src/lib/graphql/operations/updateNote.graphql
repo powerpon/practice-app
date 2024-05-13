@@ -1,0 +1,9 @@
+mutation Update_note($id: String!, $updateNoteDto: UpdateNoteDTO!) {
+    update_note(id: $id, updateNoteDto: $updateNoteDto) {
+        title
+        content
+        uid
+        created_at
+        updated_at
+    }
+}

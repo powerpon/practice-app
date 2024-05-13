@@ -1,0 +1,9 @@
+query Note($id: String!) {
+    note(id: $id) {
+        title
+        content
+        uid
+        created_at
+        updated_at
+    }
+}
